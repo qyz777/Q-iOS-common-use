@@ -68,7 +68,7 @@ static _OBJECT_NAME * _SHARED_OBJECT_NAME; \
 + (instancetype)shared##_OBJECT_NAME{ \
     static dispatch_once_t onceToken; \
     dispatch_once(&onceToken, ^{ \
-        if (!SHARED_OBJECT_NAME) { \
+        if (!_SHARED_OBJECT_NAME) { \
             _SHARED_OBJECT_NAME = [[_OBJECT_NAME alloc]init]; \
         } \
 }); \
