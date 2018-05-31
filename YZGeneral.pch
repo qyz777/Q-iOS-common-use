@@ -20,46 +20,49 @@
 #endif
 
 //weak一个对象
-#define YZWeakObject(obj) autoreleasepool{} __weak typeof(obj) weak##obj = o;
+#define YZWeakObject(obj) __weak typeof(obj) weak##obj = obj;
 
-//屏幕宽度
+// 屏幕宽度
 #define SCREEN_WIDTH     [UIScreen mainScreen].bounds.size.width
 
-//屏幕高度
+// 屏幕高度
 #define SCREEN_HEIGHT    [UIScreen mainScreen].bounds.size.height
 
-//RGB颜色
+// RGB颜色
 #define RGB(r,g,b)       [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
 
-//RGB带alpha颜色
+// RGB带alpha颜色
 #define RGB_ALPHA(r,g,b,a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
 
-//屏幕分辨率
+// 16进制颜色
+#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+
+// 屏幕分辨率
 #define SCREEN_RESOLUTION (SCREEN_WIDTH * SCREEN_HEIGHT * ([UIScreen mainScreen].scale))
 
-//获取当前系统语言
+// 获取当前系统语言
 #define CurrentLanguage ([[NSLocale preferredLanguages] objectAtIndex:0])
 
-//获取通知中心
+// 获取通知中心
 #define NotificationCenter [NSNotificationCenter defaultCenter]
 
-//快速发通知
+// 快速发通知
 #define Post_Notify(_notificationName, _obj, _userInfoDictionary) [[NSNotificationCenter defaultCenter] postNotificationName: _notificationName object: _obj userInfo: _userInfoDictionary];
 
-//添加观察者
+// 添加观察者
 #define Add_Observer(_notificationName, _observer, _observerSelector, _obj) [[NSNotificationCenter defaultCenter] addObserver:_observer selector:@selector(_observerSelector) name:_notificationName object: _obj];
 
-//移除观察者
+// 移除观察者
 #define Remove_Observer(_observer) [[NSNotificationCenter defaultCenter] removeObserver: _observer];
 
-//NSUserDefaults 实例化
+// NSUserDefaults 实例化
 #define USER_DEFAULT [NSUserDefaults standardUserDefaults]
 
-//声明单例
+// 声明单例
 #define shared(OBJECT_NAME) \
 + (instancetype)shared##OBJECT_NAME;
 
-//定义单例
+// 定义单例
 #define YZ_SINGLETON(_OBJECT_NAME, _SHARED_OBJECT_NAME) \
 + (void)initialize{ \
     [self shared##_OBJECT_NAME]; \
